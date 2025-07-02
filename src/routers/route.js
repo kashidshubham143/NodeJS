@@ -1,0 +1,17 @@
+let express=require("express");
+let deptctrl=require("../controllers/deptcontroller.js");
+let empCtrl=require("../controllers/empCtrl.js");
+let upload = require("../middleware/Fileupload.js");
+let router=express.Router();
+router.post("/adddept",deptctrl.saveDept);
+router.get("/",deptctrl.homePage);
+router.get("/newdept",deptctrl.newDept);
+router.get("/viewalldept",deptctrl.getAllDept);
+router.get("/delDept",deptctrl.delDept);
+router.get("/upddept",deptctrl.updateDept);
+router.post("/updatedept",deptctrl.deptFinalUpdate);
+router.get("/searchDeptByName",deptctrl.searchDeptByName);
+router.get("/newEmployee", empCtrl.newEmployee);
+router.post("/saveemp",upload.single("Photo"),empCtrl.saveEmployee);
+router.get("/searchEmail", empCtrl.verifyEmail);
+module.exports=router;

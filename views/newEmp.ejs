@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="ajax.js"></script>
+</head>
+<body>
+   <%- include("home.ejs")%>
+    <br><br>
+  <form name="frm" action="/saveemp" method="post" enctype="multipart/form-data">
+  <div class="container bg-dark  p-5">
+        
+        <div class="form-group">
+          <label class="text-white ">Employee Name:</label>
+          <input type="text" name="name" class="form-control" placeholder="Enter Employee Name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="text-white ">Email:</label>
+          <input type="text" id="uemail" name="email" class="form-control" placeholder="Enter Emp Email" onblur="checkEmailExistance(this.value)">
+          <label class="text-white" id="labelMsg"></label>
+        </div>
+
+        <div class="form-group">
+          <label class="text-white ">Contact:</label>
+          <input type="number" name="contact" class="form-control" placeholder="Enter Emp Contact" required>
+        </div>
+
+        <div class="form-group">
+          <label class="text-white ">Salary:</label>
+          <input type="text" name="salary" class="form-control" placeholder="Enter Emp Salary" required>
+        </div>
+
+        <div class="form-group">
+          <label class="text-white ">Upload Photo:</label>
+          <input type="file" name="Photo" class="form-control"  required>
+        </div>
+
+        <div class="form-group">
+          <label class="text-white ">Select Department</label>
+          <select name="deptid" class="form-control">
+            <option >Choose Dept</option>
+            <%
+              deptList.forEach((deptData,index)=>{
+            %>
+            <option value="<%=deptData.deptid%>"><%= deptData.deptname%></option>
+            <%
+              });
+            %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" name="s" class="form-control" value="Add new Employee" required>
+        </div>
+  </div>
+   <%
+        if(msg.length!=0)
+        {
+        %>
+         <div class="alert alert-success" role="alert">
+        <%-msg %>
+         </div> 
+         <%
+        }
+        %>
+</form>
+
+</body>
+</html>
